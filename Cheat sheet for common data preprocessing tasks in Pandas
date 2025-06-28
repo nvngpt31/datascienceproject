@@ -1,0 +1,136 @@
+Here's a comprehensive cheat sheet for common data preprocessing tasks in Pandas, a powerful library for data manipulation and analysis in Python.
+
+### Data Preprocessing Cheat Sheet in Pandas
+
+#### 1. Importing Pandas
+
+import pandas as pd
+
+
+#### 2. Loading Data
+- From CSV:
+  
+  df = pd.read_csv('file.csv')
+  
+- From Excel:
+  
+  df = pd.read_excel('file.xlsx')
+  
+- From JSON:
+  
+  df = pd.read_json('file.json')
+  
+
+#### 3. Exploring Data
+- View the first few rows:
+  
+  df.head()  # First 5 rows
+  df.head(10)  # First 10 rows
+  
+- View data types:
+  
+  df.dtypes
+  
+- Summary statistics:
+  
+  df.describe()
+  
+- Check for missing values:
+  
+  df.isnull().sum()
+  
+
+#### 4. Cleaning Data
+- Remove duplicates:
+  
+  df.drop_duplicates(inplace=True)
+  
+- Fill missing values:
+  - Fill with a specific value:
+    
+    df.fillna(value=0, inplace=True)
+    
+  - Fill with mean/median:
+    
+    df['column_name'].fillna(df['column_name'].mean(), inplace=True)
+    
+- Drop missing values:
+  
+  df.dropna(inplace=True)
+  
+
+#### 5. Renaming Columns
+
+df.rename(columns={'old_name': 'new_name'}, inplace=True)
+
+
+#### 6. Filtering Data
+- Filter rows based on conditions:
+  
+  df_filtered = df[df['column_name'] > value]
+  
+
+#### 7. Modifying Data
+- Create a new column:
+  
+  df['new_column'] = df['existing_column'] * 2
+  
+- Apply a function:
+  
+  df['new_column'] = df['existing_column'].apply(lambda x: x + 1)
+  
+
+#### 8. Encoding Categorical Variables
+- Convert categorical variables to numeric:
+  
+  df['category_column'] = df['category_column'].astype('category')
+  df['category_column'] = df['category_column'].cat.codes
+  
+- One-hot encoding:
+  
+  df = pd.get_dummies(df, columns=['categorical_column'])
+  
+
+#### 9. Scaling Numerical Data
+- Standardization (Z-score normalization):
+  
+  from sklearn.preprocessing import StandardScaler
+  scaler = StandardScaler()
+  df['scaled_column'] = scaler.fit_transform(df[['column_name']])
+  
+- Min-Max Scaling:
+  
+  from sklearn.preprocessing import MinMaxScaler
+  scaler = MinMaxScaler()
+  df['scaled_column'] = scaler.fit_transform(df[['column_name']])
+  
+
+#### 10. Date and Time Handling
+- Convert to datetime:
+  
+  df['date_column'] = pd.to_datetime(df['date_column'])
+  
+- Extracting parts of the date:
+  
+  df['year'] = df['date_column'].dt.year
+  df['month'] = df['date_column'].dt.month
+  df['day'] = df['date_column'].dt.day
+  
+
+#### 11. Saving Data
+- To CSV:
+  
+  df.to_csv('output.csv', index=False)
+  
+- To Excel:
+  
+  df.to_excel('output.xlsx', index=False)
+  
+- To JSON:
+  
+  df.to_json('output.json', orient='records')
+  
+
+### Conclusion
+
+This cheat sheet provides a quick reference to common data preprocessing tasks using Pandas. By utilizing these techniques, you can efficiently clean and prepare your data for analysis or modeling.
