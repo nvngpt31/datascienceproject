@@ -1,0 +1,76 @@
+### Use Case for Pie Chart with GroupBy on DataFrame Using Matplotlib
+
+A pie chart is a circular statistical graphic that is divided into slices to illustrate numerical proportions. In this example, we'll explore how to create a pie chart using a DataFrame, both with and without the `explode` property, which allows specific slices to be offset from the center for emphasis.
+
+#### Scenario: Visualizing Sales Distribution by Product Category
+
+Let’s consider a retail store that wants to visualize the distribution of sales across different product categories. We'll use a Pandas DataFrame to group the data and then create a pie chart to represent the results.
+
+### Step-by-Step Implementation
+
+#### 1. Import Necessary Libraries
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#### 2. Create Sample Data
+
+We'll create a sample DataFrame with product categories and their corresponding sales figures.
+
+# Sample data
+data = {
+    'Category': ['Electronics', 'Clothing', 'Home Goods', 'Electronics', 'Clothing', 'Home Goods'],
+    'Sales': [200, 150, 100, 300, 250, 200]
+}
+
+df = pd.DataFrame(data)
+
+#### 3. Group Data by Category
+
+We will use the `groupby` method to aggregate sales by category.
+
+# Group by category and sum the sales
+grouped_data = df.groupby('Category')['Sales'].sum().reset_index()
+
+#### 4. Create a Pie Chart Without Explode Property
+
+Step 1: Generate the Pie Chart
+
+plt.figure(figsize=(8, 6))
+
+# Create a pie chart without explode
+plt.pie(grouped_data['Sales'], labels=grouped_data['Category'], autopct='%1.1f%%', startangle=90)
+
+# Adding title
+plt.title('Sales Distribution by Product Category (Without Explode)')
+
+# Show the plot
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.show()
+
+Explanation: In this pie chart, each slice represents the total sales for a category, and the percentages are displayed. The chart is generated without any slices being exploded.
+
+#### 5. Create a Pie Chart With Explode Property
+
+Step 2: Generate the Pie Chart with Explode
+
+plt.figure(figsize=(8, 6))
+
+# Define explode array to offset one slice (e.g., Electronics)
+explode = (0.1, 0, 0)  # Only "Electronics" will be exploded
+
+# Create a pie chart with explode
+plt.pie(grouped_data['Sales'], labels=grouped_data['Category'], autopct='%1.1f%%', startangle=90, explode=explode)
+
+# Adding title
+plt.title('Sales Distribution by Product Category (With Explode)')
+
+# Show the plot
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.show()
+
+Explanation: In this pie chart, the slice representing "Electronics" is exploded (offset) to draw attention to it. This can be useful for emphasizing a particular category in presentations or reports.
+
+### Conclusion
+
+Using pie charts in conjunction with the `groupby` method in Pandas allows for effective visualization of categorical data, such as sales distribution across different product categories. The `explode` property can enhance a pie chart’s visual appeal and focus attention on specific slices. This approach helps businesses and analysts quickly understand the proportions of different categories in their datasets.
