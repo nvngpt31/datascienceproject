@@ -1,0 +1,70 @@
+### Use Case for Waffle Chart Using PyWaffle: Employee Engagement Survey Results
+
+A company conducts an employee engagement survey to assess how engaged employees feel within the organization. The survey uses a scale from 1 to 5, where 1 is "Very Disengaged" and 5 is "Very Engaged."
+
+Objective:
+To visualize the distribution of employee engagement levels using a waffle chart, making it easy for HR and management to understand the results.
+
+### Data Collected:
+- Total Respondents: 500
+- Engagement Ratings:
+  - Very Disengaged (1): 30 respondents (6%)
+  - Disengaged (2): 70 respondents (14%)
+  - Neutral (3): 150 respondents (30%)
+  - Engaged (4): 180 respondents (36%)
+  - Very Engaged (5): 70 respondents (14%)
+
+### Implementation Using PyWaffle
+
+#### Step 1: Install PyWaffle
+If you haven't already installed PyWaffle, you can do so using pip:
+
+pip install pywaffle
+
+#### Step 2: Create the Waffle Chart
+Here’s how to create a waffle chart in Python using PyWaffle:
+
+import matplotlib.pyplot as plt
+from pywaffle import Waffle
+
+# Data for the waffle chart
+data = {
+    'Very Disengaged (1)': 30,
+    'Disengaged (2)': 70,
+    'Neutral (3)': 150,
+    'Engaged (4)': 180,
+    'Very Engaged (5)': 70,
+}
+
+# Create a Waffle chart
+fig = plt.figure(
+    FigureClass=Waffle,
+    plots=1,
+    figsize=(10, 5),
+    rows=10,  # Total rows in the waffle chart (10 rows = 100 squares)
+    values=data,
+    title={'label': 'Employee Engagement Levels', 'loc': 'center'},
+    labels=[f'{k} ({v})' for k, v in data.items()],
+    colors=["#FF9999", "#FFCC99", "#FFFF99", "#99FF99", "#99CCFF"],
+    legend={'loc': 'upper left', 'bbox_to_anchor': (1, 1)}
+)
+
+# Display the chart
+plt.show()
+
+### Explanation of the Code:
+1. Data Preparation: The data dictionary contains the engagement ratings and their respective counts.
+2. Waffle Chart Creation:
+   - The `Waffle` class from PyWaffle is used to create the chart.
+   - The `rows` parameter defines how many rows will be in the waffle (10 rows for 100 squares).
+   - The `values` parameter takes the engagement data.
+   - The `title` and `labels` parameters provide the chart title and labels for each segment.
+   - The `colors` parameter assigns specific colors to each engagement level.
+3. Display: Finally, `plt.show()` renders the chart.
+
+### Insights:
+- Proportional Representation: The waffle chart visually represents employee engagement levels, making it easy to see that the majority of employees (36% engaged and 14% very engaged) are satisfied, while a smaller portion feel disengaged.
+- Areas for Improvement: The 20% of respondents who are very disengaged or disengaged can be targeted for improvement initiatives.
+
+### Conclusion:
+Using PyWaffle to create a waffle chart provides a clear and effective visualization of employee engagement survey results. This visualization can be used in presentations to facilitate discussions about employee satisfaction and potential areas for improvement within the organization.
