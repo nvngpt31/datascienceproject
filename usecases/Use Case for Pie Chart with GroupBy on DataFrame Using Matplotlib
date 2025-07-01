@@ -1,6 +1,6 @@
 ### Use Case for Pie Chart with GroupBy on DataFrame Using Matplotlib
 
-A pie chart is a circular statistical graphic that is divided into slices to illustrate numerical proportions. In this example, we'll explore how to create a pie chart using a DataFrame, both with and without the `explode` property, which allows specific slices to be offset from the center for emphasis.
+A pie chart is a circular statistical graphic that is divided into slices to illustrate numerical proportions. In this example, we'll explore how to create a pie chart using a DataFrame, both with and without the explode property, which allows specific slices to be offset from the center for emphasis.
 
 #### Scenario: Visualizing Sales Distribution by Product Category
 
