@@ -1,0 +1,76 @@
+### Use Case for Folium: Visualizing Office Locations in Bangalore
+
+Context:
+A tech consulting firm wants to create an interactive map to display the locations of major offices in Bangalore, including Google, Microsoft, Enfusion, and Clearwater. This map will help employees and clients identify key office locations and their proximity to each other.
+
+Objective:
+To generate an interactive map using Folium that marks the locations of the specified offices with different markers and labels.
+
+### Locations and Data Collected:
+- Google Office: 
+  - Latitude: 12.9716
+  - Longitude: 77.5946
+- Microsoft Office: 
+  - Latitude: 12.9352
+  - Longitude: 77.6259
+- Enfusion Office: 
+  - Latitude: 12.9664
+  - Longitude: 77.6101
+- Clearwater Office: 
+  - Latitude: 12.9611
+  - Longitude: 77.5932
+
+### Implementation of Folium
+
+#### Step 1: Prepare the Environment
+Make sure you have folium installed:
+
+pip install folium
+
+#### Step 2: Create the Map with Multiple Labels and Markers
+Here’s how to generate the map using Folium:
+
+python
+import folium
+
+# Create a base map centered on Bangalore
+map_bangalore = folium.Map(location=[12.9716, 77.5946], zoom_start=12)
+
+# Office locations
+offices = {
+    "Google Office": (12.9716, 77.5946),
+    "Microsoft Office": (12.9352, 77.6259),
+    "Enfusion Office": (12.9664, 77.6101),
+    "Clearwater Office": (12.9611, 77.5932)
+}
+
+# Add markers for each office
+for office, (lat, lon) in offices.items():
+    folium.Marker(
+        location=(lat, lon),
+        popup=office,
+        icon=folium.Icon(color='blue' if office == "Google Office" else 'green' if office == "Microsoft Office" else 'orange' if office == "Enfusion Office" else 'red')
+    ).add_to(map_bangalore)
+
+# Save the map to an HTML file
+map_bangalore.save('bangalore_offices_map.html')
+
+# Display the map in a Jupyter Notebook (if applicable)
+map_bangalore
+
+
+### Explanation of the Code:
+1. Map Creation: A base map is initialized with the center point set to Bangalore.
+2. Office Data: A dictionary holds the names and coordinates of the offices.
+3. Marker Addition:
+   - A loop goes through each office, adding a marker to the map.
+   - The popup parameter provides the office name when the marker is clicked.
+   - Different colors are assigned to the markers based on the office name for visual distinction.
+4. Save and Display: The map is saved as an HTML file for sharing and can also be displayed directly in a Jupyter Notebook.
+
+### Insights:
+- Interactive Exploration: Users can click on each marker to see the office name, making it easy to identify locations.
+- Visual Clarity: Different colored markers help users quickly distinguish between the various offices.
+
+### Conclusion:
+Using Folium to create a map of office locations in Bangalore provides a powerful visual tool for employees and clients. This interactive map enhances understanding of the geographic distribution of major tech offices in the area, supporting planning and collaboration efforts.
